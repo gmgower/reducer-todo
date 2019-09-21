@@ -3,7 +3,7 @@ import React, {useState} from 'react'
 const TodoForm = (props) => {
     console.log("TCL: TodoForm -> props", props)
 
-    const {addTodo} = props;
+    const {addTodo, clearTodo} = props;
     
     const [item, setItem] = useState('');
     
@@ -15,6 +15,10 @@ const TodoForm = (props) => {
         setItem('')
     }
     
+    const handleClear = e => {
+        e.preventDefault();
+        clearTodo();
+    }
     return (
         <div>
             <form onSubmit={handleSubmit}>
@@ -26,6 +30,7 @@ const TodoForm = (props) => {
                     placeholder="Add item"
                     />    
                     <button type="submit">Add Todo</button>
+                    <button onClick={handleClear}>Clear Todo(s)</button>
             </form>      
         </div>
     )

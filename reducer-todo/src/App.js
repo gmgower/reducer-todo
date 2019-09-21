@@ -28,11 +28,15 @@ function App() {
     dispatch({type: "TOGGLE_TODO", payload: id });
   };
 
+  const clearTodo = id => {
+    dispatch({type: "CLEAR_COMPLETED"});
+  };
+
 return (
     <div className="App">
     <h1>Todos</h1>
     <TodoList todoArray={state.todoArray} toggleTodo={toggleTodo} />
-    <TodoForm addTodo={addTodo} />
+    <TodoForm addTodo={addTodo} clearTodo={clearTodo}/>
     </div>
   );
 }
