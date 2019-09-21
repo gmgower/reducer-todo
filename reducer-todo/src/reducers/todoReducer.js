@@ -12,7 +12,8 @@ export const initialState = {
 
 // 2 Build initial reducer
 export const todoReducer = (state, action) => {
-  console.log(state, action);
+  console.log("TCL: todoReducer -> state", state)
+  console.log(state);
   switch (action.type) {
     case 'ADD_TODO':
       const newTodo = {
@@ -24,6 +25,20 @@ export const todoReducer = (state, action) => {
         ...state,
         todoArray: [...state.todoArray, newTodo] // state.todoArray.concat(newTodo)
       };
+      case "TOGGLE_TODO":
+        return {
+          ...state,
+          todoArray: state.todoArray.map(todo => {
+            if(todo.id === action.payload){
+              return {
+                ...todo,
+                completed: !todo.completed
+              }
+            } else {
+              return todo;
+            }
+          })
+        };
 
     default:
       return state;

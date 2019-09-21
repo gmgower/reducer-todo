@@ -6,6 +6,7 @@ import './App.css';
 import {initialState, todoReducer} from './reducers/todoReducer.js'
 
 import TodoForm from './components/TodoForm.js'
+import TodoList from './components/TodoList.js'
 
 // Todo Actions
 // 1 Add todos
@@ -23,9 +24,14 @@ function App() {
     dispatch({type: "ADD_TODO", payload: item})
   }
 
+  const toggleTodo = id => {
+    dispatch({type: "TOGGLE_TODO", payload: id });
+  };
+
 return (
     <div className="App">
     <h1>Todos</h1>
+    <TodoList todoArray={state.todoArray} toggleTodo={toggleTodo} />
     <TodoForm addTodo={addTodo} />
     </div>
   );
